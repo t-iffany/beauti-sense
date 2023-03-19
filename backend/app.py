@@ -1,4 +1,4 @@
-import flask import Flask, render_template, Response
+from flask import Flask, render_template, Response
 from flask_cors import CORS
 from face_mesh_cam import VideoCamera
 
