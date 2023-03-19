@@ -6,10 +6,13 @@ function App() {
     <div className="App">
       <h1>BeautiSense</h1>
       <div className="App-header">
-        back generate new look | get inspired
+        generate new look | get inspired
       </div>
       <VideoFeed />
-      <p>Writing something </p>
+      <div className="ai-comment">
+      <p>Writing something... </p>
+      <button>listen</button>    
+      </div>  
     </div>
   );
 }

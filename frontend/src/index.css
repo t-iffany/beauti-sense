@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ai-comment {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  font-size: large;
+}
