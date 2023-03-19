@@ -9,6 +9,7 @@ function App() {
         back generate new look | get inspired
       </div>
       <VideoFeed />
+      <p>Writing something </p>
     </div>
   );
 }

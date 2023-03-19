@@ -6,7 +6,7 @@ const VideoFeed = () => {
       <img
         src="http://localhost:5000/video_feed"
         alt="Video feed"
-        style={{ width: '60%', height: 'auto' }}
+        style={{ width: '100vw', height: '80vh',objectFit:'cover' }}
       />
     </div>
   );
