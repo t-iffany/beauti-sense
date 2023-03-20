@@ -2,6 +2,7 @@ import './App.css';
 import VideoFeed from './VideoFeed';
 import { useState, useEffect } from 'react';
 
+
 function App() {
   const [text, setText] = useState("");
   const [counter, setCounter] = useState(1);
@@ -88,15 +89,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>BeautiSense</h1>
+      <h1 className='logo'>Beauti<span className="half">Sense</span></h1>
       <div className="App-header">
-        generate new look | get inspired
+        <button className='header-button left'>Generate New Look</button>
+        <button className='header-button right'>Get Inspired</button>
       </div>
       <VideoFeed />
-      <button onClick={handleClick}>Check my makeup</button>
+      <div><button className='check-btn' onClick={handleClick}>Check My Makeup</button></div>
       <div className="ai-comment">
-      <p>{currentWord} </p>
-      <button onClick={handleListenClick}>listen</button>    
+      <p className='text'>{currentWord} </p>
+      {text && <button className='listen-btn' onClick={handleListenClick}>Listen</button>}  
       </div>  
     </div>
   );
