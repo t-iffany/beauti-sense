@@ -46,6 +46,46 @@ function App() {
     return () => clearInterval(intervalId);
   }, [text])
 
+  // add the useEffect to preload voices when the component mounts
+  useEffect(() => {
+    const synth = window.speechSynthesis;
+    synth.getVoices();
+  }, []);
+
+  const handleListenClick = () => {
+    // access the speech synthesis functionality of the browser
+    const synth = window.speechSynthesis;
+    // function to select a female voice and speak the text
+    const speakWithFemaleVoice = () => {
+      const voices = synth.getVoices();
+      // find the first female voice in the list
+      const femaleVoice = voices.find((voice) => 
+        // check if the voice name contains 'female' or 'woman'
+        voice.name.toLowerCase().includes('female') ||
+        voice.name.toLowerCase().includes('woman')
+      );
+
+      // create a new SpeechSynthesisUtterance instance with the 'text' state variable
+      const utterance = new SpeechSynthesisUtterance(text);
+      // set the voice to the first available voice in the browser
+      utterance.voice = femaleVoice || voices[0];
+      // set the pitch of the speech
+      utterance.pitch = 1;
+      // set the rate or speed of the speech
+      utterance.rate = 1;
+      // use the speech synthesis functionality to speak the text aloud
+      synth.speak(utterance);
+    };
+
+    // if voices are loaded, call the speakWithFemalVoice function
+    if (synth.getVoices().length !== 0) {
+      speakWithFemaleVoice();
+    } else {
+      // if voices not loaded yet, listen for voicesChanged event and call the speakWithFemaleVoice function
+      synth.addEventListener('voiceschanged', speakWithFemaleVoice, { once: true });
+    }
+  };
+
   return (
     <div className="App">
       <h1>BeautiSense</h1>
@@ -56,7 +96,7 @@ function App() {
       <button onClick={handleClick}>Check my makeup</button>
       <div className="ai-comment">
       <p>{currentWord} </p>
-      <button>listen</button>    
+      <button onClick={handleListenClick}>listen</button>    
       </div>  
     </div>
   );
